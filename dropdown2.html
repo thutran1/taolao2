@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dropdown with Search</title>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 30px;
+    }
+    .select2-container {
+      width: 100% !important;
+    }
+  </style>
+</head>
+<body>
+  <label for="farmerSelect">Chọn nông dân:</label><br><br>
+  <select id="farmerSelect" style="width:100%"></select>
+
+  <!-- Libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <!-- Script -->
+  <script>
+    $(document).ready(function () {
+      $.getJSON("https://script.google.com/macros/s/AKfycby6mkLuh69mXW9k820DuFTKsfevz_5g7XtPvvzh-MaNlryHe4XFH8QABMzQFySTdLI/exec", function(data) {
+        let options = data.map(function(item) {
+          return { id: item, text: item };
+        });
+
+        $('#farmerSelect').select2({
+          data: options,
+          placeholder: "Tìm kiếm nông dân...",
+          allowClear: true
+        });
+      });
+    });
+  </script>
+</body>
+</html>
